@@ -46,20 +46,22 @@ function initilizeCharacters() {
 }
 
 function characterCards(divID) {
-    $('divID').children().remove();
-    for (var i = 0, i < charArray.length; i++) {
-        $(divID).append('<div />');
-        $(divID + ' div: last-child').addClass('card');
-        $(divID + ' div: last-child').append('<img />');
-        $(divID + ' img: last-child').attr('id', charArray[i].name);
-        $(divID + ' img: last-child').attr('class', 'card-img-top');
-        $(divID + ' img: last-child').attr('src', charArray[i].pic);
-        $(divID + ' img: last-child').attr('width', 150);
-        $(divID + ' img: last-child').addClass('img-thumbnail');
-        $(divID + ' div:last-child').append(charArray[i].name + '<br>');
-        $(divID + ' div:last-child').append('HP: ' + charArray[i].healthPoints);
-        $(divID + ' div:last-child').append();
-    }
+  $("divID")
+    .children()
+    .remove();
+  for (var i = 0; i < charArray.length; i++) {
+    $(divID).append("<div />");
+    $(divID + " div:last-child").addClass("card");
+    $(divID + " div:last-child").append("<img />");
+    $(divID + " img:last-child").attr("id", charArray[i].name);
+    $(divID + " img:last-child").attr("class", "card-img-top");
+    $(divID + " img:last-child").attr("src", charArray[i].pic);
+    $(divID + " img:last-child").attr("width", 150);
+    $(divID + " img:last-child").addClass("img-thumbnail");
+    $(divID + " div:last-child").append(charArray[i].name + "<br>");
+    $(divID + " div:last-child").append("HP: " + charArray[i].healthPoints);
+    $(divID + " div:last-child").append();
+  }
 }
 
 Character.prototype.increaseAttack = function() {
@@ -84,7 +86,6 @@ Character.prototype.counterAttack = function(Obj) {
       " damage points."
   );
 };
-
 
 // let divTag1 = $("<div>");
 
@@ -118,5 +119,5 @@ Character.prototype.counterAttack = function(Obj) {
 //           bulk of the card's content.
 //         </p>
 //       </div>
-//     </div> 
+//     </div>
 // }
