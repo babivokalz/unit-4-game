@@ -1,0 +1,42 @@
+body {
+  background-color: black;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../images/Hogwarts.jpg);
+}
+#msg {
+  font-size: 1.2em;
+}
+h2 {
+  color: white;
+  font-weight: bolder;
+  text-align: center;
+}
+h4 {
+  color: white;
+  font-weight: bold;
+  padding-top: 20px;
+}
+/* .character {
+  width: 160px;
+} */
+.card {
+  height: 180px;
+  width: 200px;
+  background: white;
+}
+/* .card-title {
+  margin-top: -20px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 1em;
+  height: 35px;
+}
+.card-text {
+  text-align: center;
+  font-size: 1em;
+} */
+/* #restart {
+  margin-top: 20px;
+  margin-left: 10px;
+} */
