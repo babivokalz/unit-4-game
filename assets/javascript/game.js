@@ -53,6 +53,12 @@ function characterCards(divID) {
         $(divID + ' div: last-child').append('<img />');
         $(divID + ' img: last-child').attr('id', charArray[i].name);
         $(divID + ' img: last-child').attr('class', 'card-img-top');
+        $(divID + ' img: last-child').attr('src', charArray[i].pic);
+        $(divID + ' img: last-child').attr('width', 150);
+        $(divID + ' img: last-child').addClass('img-thumbnail');
+        $(divID + ' div:last-child').append(charArray[i].name + '<br>');
+        $(divID + ' div:last-child').append('HP: ' + charArray[i].healthPoints);
+        $(divID + ' div:last-child').append();
     }
 }
 
