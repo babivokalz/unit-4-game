@@ -64,6 +64,9 @@ function populateCharacterCards(divID) {
     $(card).append(charArray[i].name + "<br>");
     $(card).append("HP: " + charArray[i].healthPoints);
     $(myCardContainer).append(card);
+    $(card).on('click', function() {
+        $('#yourCharacter').append(card);
+    })
   }
 }
 
