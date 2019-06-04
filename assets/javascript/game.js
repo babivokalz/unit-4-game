@@ -64,9 +64,9 @@ function populateCharacterCards(divID) {
     $(card).append(charArray[i].name + "<br>");
     $(card).append("HP: " + charArray[i].healthPoints);
     $(myCardContainer).append(card);
-    $(card).on('click', function() {
-        $('#yourCharacter').append(card);
-    })
+    $(card).on("click", function() {
+      $("#yourCharacter").append(card);
+    });
   }
 }
 
@@ -149,6 +149,11 @@ $(document).on("click", "img", function() {
         playerSelected = true;
       }
     }
+  }
+  if (playerSelected === -1) {
+    $(this).appendTo("#yourCharacter");
+    $("#characters").appendTo("#opponents");
+    playerSelected = getCharacterIndex($(this).attr("id"));
   }
 });
 
