@@ -4,6 +4,8 @@ var defender;
 var charArray = [];
 var playerSelected = false;
 var defenderSelected = false;
+var playerID;
+var defenderID;
 
 function Character(name, hp, ap, counter, pic) {
   this.name = name;
@@ -65,7 +67,7 @@ function populateCharacterCards(divID) {
     $(card).append("HP: " + charArray[i].healthPoints);
     $(myCardContainer).append(card);
     $(card).on("click", function() {
-      $("#yourCharacter").append(card);
+      $("#characters").append(card);
     });
   }
 }
@@ -150,13 +152,21 @@ $(document).on("click", "img", function() {
       }
     }
   }
+  $(document).on("click", ".card", function() {
+    if (playerSelected === false) {
+      $(this).appendTo("#yourCharacter");
+      $("#characters").appendTo("#opponents");
+      playerSelected = true;
+
+      playerID = getCharacterIndex($(this).attr("id"));
+    }
+  });
   if (playerSelected === -1) {
     $(this).appendTo("#yourCharacter");
     $("#characters").appendTo("#opponents");
     playerSelected = getCharacterIndex($(this).attr("id"));
   }
 });
-
 $(document).ready(function() {
   initilizeCharacters();
   populateCharacterCards("cards");
