@@ -71,7 +71,7 @@ function populateCharacterCards(divID) {
     $(card).append("HP: " + cardData.healthPoints);
     $(myCardContainer).append(card);
     $(card).on("click", () => {
-      $("#characters").append(card);
+      $("#yourCharacter").append(card);
       charArray.forEach((innerCardData, j) => {
         if (i !== j) {
           $("#opponents").append($("#" + innerCardData.id)[0]);
