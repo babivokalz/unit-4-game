@@ -51,9 +51,8 @@ function initilizeCharacters() {
   );
   charArray.push(harry, draco, bellatrix, voldemort);
 }
-function populateCharacterCards(divID) {
-  const myCardContainer = $("#" + divID);
-  //   console.warn("charArray", charArray);
+function populateCharacterCards() {
+  const myCardContainer = $("#cards");
   $(myCardContainer)
     .children()
     .remove();
@@ -72,10 +71,25 @@ function populateCharacterCards(divID) {
     $(myCardContainer).append(card);
     $(card).on("click", () => {
       $("#yourCharacter").append(card);
+      player = cardData;
       charArray.forEach((innerCardData, j) => {
+        // move all other cards to opponents area
         if (i !== j) {
           $("#opponents").append($("#" + innerCardData.id)[0]);
         }
+        // update the card click handle so that upon second click after the opponents area is populated, it will move the card to the defenderArea.
+        $("#" + innerCardData.id).off("click");
+        $("#" + innerCardData.id).on("click", () => {
+          $("#" + innerCardData.id).off("click");
+          defender = innerCardData;
+          $("#defenderArea").append($("#" + innerCardData.id)[0]);
+          // remove all the other cards
+          charArray.forEach((cardToRemove, k) => {
+            if (cardToRemove !== player && cardToRemove !== defender) {
+              $("#" + cardToRemove.id).remove();
+            }
+          });
+        });
       });
     });
   });
@@ -161,20 +175,20 @@ $(document).on("click", "img", function() {
       }
     }
   }
-  $(document).on("click", ".card", function() {
-    if (playerSelected === false) {
-      $(this).appendTo("#yourCharacter");
-      $("#characters").appendTo("#opponents");
-      playerSelected = true;
+  // $(document).on("click", ".card", function() {
+  //   if (playerSelected === false) {
+  //     $(this).appendTo("#yourCharacter");
+  //     $("#characters").appendTo("#opponents");
+  //     playerSelected = true;
 
-      playerID = getCharacterIndex($(this).attr("id"));
-    }
-  });
-  if (playerSelected === -1) {
-    $(this).appendTo("#yourCharacter");
-    $("#characters").appendTo("#opponents");
-    playerSelected = getCharacterIndex($(this).attr("id"));
-  }
+  //     playerID = getCharacterIndex($(this).attr("id"));
+  //   }
+  // });
+  // if (playerSelected === -1) {
+  //   $(this).appendTo("#yourCharacter");
+  //   $("#characters").appendTo("#opponents");
+  //   playerSelected = getCharacterIndex($(this).attr("id"));
+  // }
 });
 $(document).ready(function() {
   initilizeCharacters();
