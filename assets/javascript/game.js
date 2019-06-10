@@ -72,8 +72,8 @@ function populateCharacterCards(divID) {
     $(myCardContainer).append(card);
     $(card).on("click", () => {
       $("#characters").append(card);
-      charArray.forEach((innerCardData, i) => {
-        if (i !== i) {
+      charArray.forEach((innerCardData, j) => {
+        if (i !== j) {
           $("#opponents").append($("#" + innerCardData.id)[0]);
         }
       });
