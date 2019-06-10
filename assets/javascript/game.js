@@ -7,7 +7,8 @@ var defenderSelected = false;
 var playerID;
 var defenderID;
 
-function Character(name, hp, ap, counter, pic) {
+function Character(id, name, hp, ap, counter, pic) {
+  this.id = id;
   this.name = name;
   this.healthPoints = hp;
   this.attackPower = ap;
@@ -17,6 +18,7 @@ function Character(name, hp, ap, counter, pic) {
 
 function initilizeCharacters() {
   var harry = new Character(
+    "harry",
     "Harry Potter",
     150,
     20,
@@ -24,6 +26,7 @@ function initilizeCharacters() {
     "./assets/images/Harry.jpg"
   );
   var draco = new Character(
+    "draco",
     "Draco Malfoy",
     130,
     18,
@@ -31,6 +34,7 @@ function initilizeCharacters() {
     "./assets/images/Draco.jpg"
   );
   var bellatrix = new Character(
+    "bellatrix",
     "Bellatrix Lestrange",
     140,
     16,
@@ -38,6 +42,7 @@ function initilizeCharacters() {
     "./assets/images/Bellatrix.jpg"
   );
   var voldemort = new Character(
+    "voldemort",
     "Voldemort",
     180,
     25,
@@ -52,24 +57,28 @@ function populateCharacterCards(divID) {
   $(myCardContainer)
     .children()
     .remove();
-  for (var i = 0; i < charArray.length; i++) {
-    // console.log(i, "append: ", myCardContainer);
+  charArray.forEach((cardData, i) => {
     const card = document.createElement("div");
     const cardImage = document.createElement("img");
     $(card).addClass("card");
     $(card).append(cardImage);
-    $(card).attr("id", charArray[i].name);
+    $(card).attr("id", cardData.id);
     $(cardImage).attr("class", "card-img-top");
-    $(cardImage).attr("src", charArray[i].pic);
+    $(cardImage).attr("src", cardData.pic);
     $(cardImage).attr("width", 150);
     $(cardImage).addClass("img-thumbnail");
-    $(card).append(charArray[i].name + "<br>");
-    $(card).append("HP: " + charArray[i].healthPoints);
+    $(card).append(cardData.name + "<br>");
+    $(card).append("HP: " + cardData.healthPoints);
     $(myCardContainer).append(card);
-    $(card).on("click", function() {
+    $(card).on("click", () => {
       $("#characters").append(card);
+      charArray.forEach((innerCardData, i) => {
+        if (i !== i) {
+          $("#opponents").append($("#" + innerCardData.id)[0]);
+        }
+      });
     });
-  }
+  });
 }
 
 Character.prototype.increaseAttack = function() {
